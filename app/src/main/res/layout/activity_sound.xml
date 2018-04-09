@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mhsm0034.fntj0052.hvac.SoundActivity">
+
+    <TextView
+        android:id="@+id/textSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:text="Sound"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textViewSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textSound"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="102dp"
+        android:text="Level:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_TextSound"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/textViewSound"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Result"
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/buttonGetSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getJSON"
+        android:text="Get"
+        android:layout_alignBaseline="@+id/buttonBack"
+        android:layout_alignBottom="@+id/buttonBack"
+        android:layout_toLeftOf="@+id/textSound"
+        android:layout_toStartOf="@+id/textSound"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:onClick="back"
+        android:text="Back"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textSound"
+        android:layout_toEndOf="@+id/textSound" />
+
+
+</RelativeLayout>
