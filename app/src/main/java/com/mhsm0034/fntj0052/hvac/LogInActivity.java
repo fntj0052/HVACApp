@@ -1,5 +1,6 @@
 package com.mhsm0034.fntj0052.hvac;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -12,41 +13,44 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class LogInActivity extends AppCompatActivity{
     EditText umail,upassw;
     Button uLogIn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        umail = (EditText)findViewById(R.id.email);
+        umail = (EditText) findViewById(R.id.email);
         upassw = (EditText) findViewById(R.id.passwrd);
         uLogIn = (Button) findViewById(R.id.buttonLogIn);
-
     }
-    public void logIn(View vw)
-    {
+
+    public void logIn(View vw) {
+        String email = umail.getText().toString();
+        String password = upassw.getText().toString();
+        String type = "login";
+        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        backgroundWorker.execute(type, email, password);
         if (!validate()) {
             onLoginFailed();
             return;
+
+        } else {
+            uLogIn.setEnabled(false);
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            onLoginSuccess();
+                        }
+                    }, 3000);
+
+            Intent intent = new Intent(getApplicationContext(), HomePage.class);
+            startActivity(intent);
         }
 
-        uLogIn.setEnabled(false);
-
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
-                        //progressDialog.dismiss();
-                    }
-                }, 3000);
     }
 
     public void onLoginSuccess() {
@@ -55,8 +59,9 @@ public class LogInActivity extends AppCompatActivity{
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+        umail.setText("");
+        upassw.setText("");
         uLogIn.setEnabled(true);
     }
 
@@ -109,7 +114,7 @@ public class LogInActivity extends AppCompatActivity{
 
         switch (item.getItemId()) {
             case R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
                 return true;
             case R.id.login:
@@ -129,10 +134,16 @@ public class LogInActivity extends AppCompatActivity{
                 startActivity(intent4);
                 return true;
             case R.id.about:
-                String url ="https://cenghvac.wordpress.com/";
+                String url ="https://cenghvac.wordpress.com/about-us/";
                 Intent intent5 = new Intent(Intent.ACTION_VIEW);
                 intent5.setData(Uri.parse(url));
                 startActivity(intent5);
+                return true;
+            case R.id.logout:
+                Intent loginscreen=new Intent(this,Activity.class);
+                loginscreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(loginscreen);
+                this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

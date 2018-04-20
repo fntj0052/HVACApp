@@ -35,7 +35,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class StatsActivity extends Activity{
 
-    private String EVENT_DATE_TIME = "2018-12-31 10:30:00";
+    private String EVENT_DATE_TIME = "2018-04-27 12:30:00";
     private String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     LinearLayout linear_layout_1, linear_layout_2;
     TextView tv_days, tv_hour, tv_minute, tv_second,tv_temp;
@@ -45,7 +45,6 @@ public class StatsActivity extends Activity{
     String JSON_STRING;
 
     Button rst, srt;
-    //EditText tmp, lsmt;
 
     private class BackgroundTask extends AsyncTask<Void,Void,String> {
 
@@ -82,8 +81,19 @@ public class StatsActivity extends Activity{
         @Override
         protected void onPostExecute(String result) {
             tv_temp.setText(result);
+            JSON_STRING = result;
         }
 
+    }
+    public void parseJSON (View view){
+        if(JSON_STRING == null){
+            Toast.makeText(getApplicationContext(),"First get JSON",Toast.LENGTH_LONG).show();
+        }
+        else {
+            Intent intent4 = new Intent(this,DisplayListView2.class);
+            intent4.putExtra("json_data",JSON_STRING);
+            startActivity(intent4);
+        }
     }
 
     @Override
@@ -94,9 +104,7 @@ public class StatsActivity extends Activity{
         initUI();
         countDownStart();
 
-        //srt=(Button)findViewById(R.id.buttonStart);
         rst =(Button)findViewById(R.id.buttonReset);
-        //tmp =(EditText)findViewById(R.id.editTemp);
         tv_temp=(TextView)findViewById(R.id.tv_Temp);
 
 
@@ -172,7 +180,7 @@ public class StatsActivity extends Activity{
 
         switch (item.getItemId()) {
             case R.id.home:
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, HomePage.class);
                 startActivity(intent);
                 return true;
             case R.id.login:
@@ -192,10 +200,16 @@ public class StatsActivity extends Activity{
                 startActivity(intent4);
                 return true;
             case R.id.about:
-                String url ="https://cenghvac.wordpress.com/";
+                String url ="https://cenghvac.wordpress.com/about-us/";
                 Intent intent5 = new Intent(Intent.ACTION_VIEW);
                 intent5.setData(Uri.parse(url));
                 startActivity(intent5);
+                return true;
+            case R.id.logout:
+                Intent loginscreen=new Intent(this,Activity.class);
+                loginscreen.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(loginscreen);
+                this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -204,6 +218,12 @@ public class StatsActivity extends Activity{
 
     public void getJSON (View view){
         new StatsActivity.BackgroundTask().execute();
+    }
+
+
+    public void sound(View view){
+        Intent intent = new Intent(this, HomePage.class);
+        startActivity(intent);
     }
 
     public void onBackPressed() {
