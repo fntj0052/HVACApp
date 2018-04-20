@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/home"
-        android:title="Home">
+        android:title="Homepage">
     </item>
 
     <item android:id="@+id/login"
@@ -23,6 +23,10 @@
 
     <item android:id="@+id/about"
         android:title="About">
+    </item>
+
+    <item android:id="@+id/logout"
+        android:title="Log-Out">
     </item>
 
 

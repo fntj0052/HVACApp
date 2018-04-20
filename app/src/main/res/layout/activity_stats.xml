@@ -171,14 +171,10 @@
             android:id="@+id/buttonReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="23dp"
             android:onClick="reset"
             android:text="Reset"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="15dp"
-            android:layout_marginEnd="15dp" />
+            android:layout_above="@+id/btnCheckSound"
+            android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/buttonGetJSON"
@@ -186,12 +182,28 @@
         android:layout_height="wrap_content"
         android:onClick="getJSON"
         android:text="Get Temp"
-        android:layout_alignBaseline="@+id/buttonReset"
-        android:layout_alignBottom="@+id/buttonReset"
+        android:layout_below="@+id/tv_Temp"
         android:layout_toRightOf="@+id/linear_layout_1"
-        android:layout_toEndOf="@+id/linear_layout_1"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp" />
+        android:layout_toEndOf="@+id/linear_layout_1" />
+
+    <Button
+        android:id="@+id/buttonParse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="parseJSON"
+        android:text="Parse"
+        android:layout_below="@+id/tv_Temp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/btnCheckSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="sound"
+        android:text="Back" />
 
 
 </RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.mhsm0034.fntj0052.hvac.HomePage">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="262dp"
+        android:layout_height="51dp"
+        android:text="Home Page"
+        android:gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageButton
+        android:id="@+id/buttonsound"
+        android:layout_width="327dp"
+        android:layout_height="100dp"
+        android:onClick="sound"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/sound"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <ImageButton
+        android:id="@+id/buttonloginRegister"
+        android:layout_width="327dp"
+        android:layout_height="100dp"
+        android:onClick="logreg"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonsound"
+        android:scaleType="fitStart"
+        app:srcCompat="@drawable/rl2"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <ImageButton
+        android:id="@+id/buttonstats"
+        android:layout_width="327dp"
+        android:layout_height="100dp"
+        android:onClick="stats"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonloginRegister"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/stats"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="228dp" />
+
+</LinearLayout>
